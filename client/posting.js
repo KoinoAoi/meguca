@@ -433,15 +433,19 @@ on_input: function (val) {
 		val = embedRewrite(m, sc);
 	}
         
-	/* Danbooru links - To be revisited
+	// Danbooru links 
         while (true){
             var m = val.match(danbooru_re);
             if (!m)
                 break;
-            var danb = '>>>/danbooru/' + m[1];
-            val = embedRewrite(m, danb);
-        }*/
-    
+            var params = m[1].split('&');
+            for (var i in params){
+                if (params[i].toLowerCase().indexOf('tags=') >= 0){
+                    var danb = '>>>/danbooru/' + params[i];
+                    val = embedRewrite(m, danb);        
+                    }
+                }
+            }
         // Pastebin links
         while(true){
             var m = val.match(pastebin_re);

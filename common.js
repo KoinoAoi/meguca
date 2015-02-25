@@ -205,7 +205,7 @@ var OS = OneeSama.prototype;
 
 var break_re = new RegExp("(\\S{" + DEF.WORD_LENGTH_LIMIT + "})");
 /* internal refs, embeds */
-var ref_re = />>(\d+|>\/pastebin\/.*|>\/watch\?v=[\w-]{11}(?:#t=[\dhms]{1,9})?|>\/soundcloud\/[\w-]{1,40}\/[\w-]{1,80}|>\/(?:a|foolz)\/\d{0,10})/;
+var ref_re = />>(\d+|>\/danbooru\/.*|>\/pastebin\/.*|>\/watch\?v=[\w-]{11}(?:#t=[\dhms]{1,9})?|>\/soundcloud\/[\w-]{1,40}\/[\w-]{1,80}|>\/(?:a|foolz)\/\d{0,10})/;
 
 OS.hook = function (name, func) {
 	var hs = this.hooks[name];
@@ -254,6 +254,10 @@ OS.red_string = function (ref) {
                 dest = 'https://pastebin.com/' + ref.slice(11);
                 linkClass = 'embed pastebin';
         }
+        else if (prefix == '>/d'){
+                dest = 'https://danbooru.donmai.us/posts?tags=' + ref.slice(11);
+                linkClass = 'embed danbooru';
+            }
 	else {
 		this.tamashii(parseInt(ref, 10));
 		return;

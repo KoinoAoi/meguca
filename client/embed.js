@@ -3,7 +3,7 @@ var youtube_url_re = /(?:>>>*?)?(?:https?:\/\/)?(?:www\.|m.)?youtube\.com\/watch
 var youtube_short_re =/(?:>>>*?)?(?:https?:\/\/)?(?:www\.|m.)?youtu.be\/([\w-]{11})\??(t=[\dhms]{1,9})?/;
 var youtube_time_re = /^#t=(?:(\d\d?)h)?(?:(\d{1,3})m)?(?:(\d{1,3})s)?$/;
 var youtube_short_time_re = /^t=(?:(\d\d?)h)?(?:(\d{1,3})m)?(?:(\d{1,3})s)?$/
-var danbooru_re = /(?:>>>*?)?(?:https?:\/\/)?(?:www\.)?danbooru\.donmai\.us\/posts\/?\?(?:utf8=%E2%9C%93&)?tags=(.*)/;
+
 
 function make_video(id, params, start) {
 	if (!params)
@@ -285,3 +285,9 @@ $(document).on('click', '.pastebin', function(event){
         });
     return false;
 });
+
+//DANBOORU
+var danbooru_re = /(?:>>>*?)?(?:https?:\/\/)?(?:www\.)?danbooru\.donmai\.us\/posts\/?\?((?:(?:(?:[^\s#=])+=(?:[^\s#&=]+)&?)*)?)/;
+/*Danbooru's URL system is different. Using '&*=*' as parameters.
+ *Must be able to find everything after 'posts?' and find tags=*
+ */
