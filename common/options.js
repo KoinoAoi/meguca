@@ -8,6 +8,7 @@
 var imports = require('./imports'),
 	index = require('./index'),
 	util = require('./util'),
+        background = require('../client/options/background'),
 	main = imports.main,
 	$, notMobile, options, state;
 if (imports.isNode)
@@ -296,15 +297,18 @@ opts.push(illyaDance,
 	{
 		id: 'userBG',
 		load: notMobile,
-		tab: 1
+		tab: 1,
+                exec: background.set()
 	},
 	{
 		id: 'userBGimage',
 		load: notMobile,
 		type: 'image',
-		tab: 1
+		tab: 1,
 		// FIXME
-		//exec: background.set
+		exec: function(file){
+                    background.genCustom(file);
+            }
 	},
 	/* LAST N CONFIG */
 	{
